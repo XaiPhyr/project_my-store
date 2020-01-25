@@ -10,7 +10,7 @@ class database
     function __construct()
     {
         $this->db_username = 'root';
-        $this->db_password = '';
+        $this->db_password = 'normandy';
         $this->host = 'localhost';
         $this->dbname = 'store';
     }
