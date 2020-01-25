@@ -148,6 +148,33 @@ if ($_POST['add_company']) {
     exit();
 }
 
+if ($_POST['add_order']) {
+    include("models/order.php");
+    $id = $_POST['customer_id'];
+    $OrderModel->customer_id = $_POST['customer_id'];
+    $OrderModel->product_id = $_POST['product_id'];
+    $OrderModel->product_name = $_POST['product_name'];
+    $OrderModel->qty = $_POST['qty'];
+    $OrderModel->total_cost = $_POST['cost'] * $_POST['qty'];
+
+    $OrderModel->save_order();
+    $OrderModel->save_sales();
+
+    header("location: index.php?page=cart&id=$id");
+    exit();
+}
+
+if ($_POST['remove_order']) {
+    include("models/order.php");
+    $order_id = $_POST['order_id'];
+    $customer_id = $_POST['customer_id'];
+
+    $OrderModel->remove_order($order_id);
+
+    header("location: index.php?page=cart&id=$customer_id");
+    exit();
+}
+
 if ($_POST['restock']) {
     include("models/product.php");
 

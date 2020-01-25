@@ -2,7 +2,6 @@
 include("models/user.php");
 
 $id = $_GET['id'];
-$status = $_GET['status'];
 $data = $UserModel->get_single_user($id);
 ?>
 
@@ -14,6 +13,39 @@ $data = $UserModel->get_single_user($id);
             </div>
 
             <div class="card-body">
+                <legend>Account Detail</legend>
+                <div class="row">
+                    <div class="form-group col-3">
+                        <label for="">Username</label>
+                        <?php if (empty($id)) { ?>
+                            <input type="text" name="username" id="" class="form-control">
+                        <?php } else { ?>
+                            <input type="text" name="username" id="" value="<?php echo $data->username ?>" class="form-control">
+                        <?php } ?>
+                    </div>
+                    <?php if (empty($id)) { ?>
+                        <div class="form-group col-3">
+                            <label for="">Password</label>
+                            <input type="password" name="password" id="" class="form-control">
+                        </div>
+                    <?php } ?>
+                    <div class="form-group col-3">
+                        <label for="">Email</label>
+                        <?php if (empty($id)) { ?>
+                            <input type="text" name="email" id="" class="form-control">
+                        <?php } else { ?>
+                            <input type="text" name="email" id="" value="<?php echo $data->email ?>" class="form-control">
+                        <?php } ?>
+                    </div>
+                    <div class="form-group col-3">
+                        <label for="">Status</label>
+                        <select name="status" id="" class="form-control">
+                            <option value="Admin">Admin</option>
+                            <option value="User">User</option>
+                        </select>
+                    </div>
+                </div>
+
                 <legend>Information Detail</legend>
                 <div class="row">
                     <div class="form-group col-4">
@@ -96,9 +128,8 @@ $data = $UserModel->get_single_user($id);
 
                 <div class="float-right">
                     <input type="hidden" name="id" value="<?php echo $id ?>">
-                    <input type="hidden" name="status" value="<?php echo $status ?>">
-                    <button class="btn btn-primary" type="submit" name="add_customer" value="<?php echo $status ?>">Save</button>
-                    <button class="btn btn-secondary" type="submit" name="cancel" value="<?php echo $status ?>">Cancel</button>
+                    <button class="btn btn-primary" type="submit" name="add_user" value="submit">Save</button>
+                    <button class="btn btn-secondary" type="submit" name="cancel" value="user">Cancel</button>
                 </div>
             </div>
         </div>

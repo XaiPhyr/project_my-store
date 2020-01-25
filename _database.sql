@@ -139,18 +139,17 @@ CREATE TABLE IF NOT EXISTS store.product_details (
     `flag` int(1) DEFAULT 0
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 
-CREATE TABLE IF NOT EXISTS store.order (
+CREATE TABLE IF NOT EXISTS store.orders (
     `Id` int(5) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `customer_id` varchar(15) DEFAULT NULL,
     `date_purchased` datetime DEFAULT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
-ALTER TABLE store.order AUTO_INCREMENT = 50001;
+ALTER TABLE store.orders AUTO_INCREMENT = 50001;
 
 CREATE TABLE IF NOT EXISTS store.sales (
     `Id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `order_id` varchar(15) DEFAULT NULL,
     `product_id` varchar(15) DEFAULT NULL,
-    `customer_id` varchar(15) DEFAULT NULL,
     `qty` int DEFAULT NULL,
     `cost` float DEFAULT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
@@ -180,3 +179,9 @@ CREATE TABLE IF NOT EXISTS store.category (
     `flag` int(1) DEFAULT 0
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
 ALTER TABLE store.category AUTO_INCREMENT = 60001;
+
+/* Update Jan 26, 2020 */
+ALTER TABLE store.sales ADD COLUMN `product_name` varchar(45) AFTER `product_id`;
+ALTER TABLE store.sales ADD COLUMN `date_purchased` datetime;
+ALTER TABLE store.orders ADD COLUMN `flag` int(1) DEFAULT 0;
+ALTER TABLE store.sales ADD COLUMN `flag` int(1) DEFAULT 0;

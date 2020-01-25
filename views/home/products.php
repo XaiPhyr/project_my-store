@@ -36,7 +36,7 @@ $count = 0;
                             <td><?php echo $item->product_name ?></td>
                             <td><?php echo $category->category_name ?></td>
                             <td><?php echo $item->stocks ?></td>
-                            <td><strong>$ <?php echo $item->price ?></strong></td>
+                            <td><strong>$ <?php echo number_format($item->price, 2, '.', ','); ?></strong></td>
                             <td><?php echo $date->format('m/d/Y h:m:s a') ?></td>
                             <td align="right">
                                 <form style="display: inline-block" action="?page=add-stock&id=<?php echo $item->product_id ?>" method="post">

@@ -54,19 +54,19 @@ class UserModel extends QueryGetter
         $connect = $this->db_connect();
         if (empty($this->id) || $this->id == '') {
             $post = "INSERT INTO user_header SET
-            first_name = '" . $this->cust_firstname . "',
-            last_name = '" . $this->cust_lastname . "',
-            dob = '" . $this->cust_dob . "',
-            image = '', created = now(), flag = 1";
+            first_name = '" . $this->firstname . "',
+            last_name = '" . $this->lastname . "',
+            dob = '" . $this->dob . "',
+            image = 'NULL', created = now(), flag = 1";
 
             mysqli_query($connect, $post);
             $this->last_id = $connect->insert_id;
         } else {
             $put = "UPDATE user_header SET
-            first_name = '" . $this->cust_firstname . "',
-            last_name = '" . $this->cust_lastname . "',
-            dob = '" . $this->cust_dob . "',
-            image = '', modified = now(), flag = 1 WHERE Id = '" . $this->id . "'";
+            first_name = '" . $this->firstname . "',
+            last_name = '" . $this->lastname . "',
+            dob = '" . $this->dob . "',
+            image = 'NULL', modified = now(), flag = 1 WHERE Id = '" . $this->id . "'";
 
             mysqli_query($connect, $put);
         }
@@ -77,19 +77,19 @@ class UserModel extends QueryGetter
         if (empty($this->id) || $this->id == '') {
             $post = "INSERT INTO user_address SET
             user_id = '" . $this->last_id . "',
-            address = '" . $this->cust_address . "',
-            city = '" . $this->cust_city . "',
-            country = '" . $this->cust_country . "',
-            postal = '" . $this->cust_postal . "',
+            address = '" . $this->address . "',
+            city = '" . $this->city . "',
+            country = '" . $this->country . "',
+            postal = '" . $this->postal . "',
             created = now(), flag = 1";
 
             $this->PostPutDeleteQuery($post);
         } else {
             $put = "UPDATE user_address SET
-            address = '" . $this->cust_address . "',
-            city = '" . $this->cust_city . "',
-            country = '" . $this->cust_country . "',
-            postal = '" . $this->cust_postal . "',
+            address = '" . $this->address . "',
+            city = '" . $this->city . "',
+            country = '" . $this->country . "',
+            postal = '" . $this->postal . "',
             modified = now(), flag = 1 WHERE user_id = '" . $this->id . "'";
 
             $this->PostPutDeleteQuery($put);
@@ -101,15 +101,15 @@ class UserModel extends QueryGetter
         if (empty($this->id) || $this->id == '') {
             $post = "INSERT INTO user_contacts SET
             user_id = '" . $this->last_id . "',
-            area_code = '" . $this->cust_area_code . "',
-            number = '" . $this->cust_number . "',
+            area_code = '" . $this->area_code . "',
+            number = '" . $this->number . "',
             created = now(), flag = 1";
 
             $this->PostPutDeleteQuery($post);
         } else {
             $put = "UPDATE user_contacts SET
-            area_code = '" . $this->cust_area_code . "',
-            number = '" . $this->cust_number . "',
+            area_code = '" . $this->area_code . "',
+            number = '" . $this->number . "',
             modified = now(), flag = 1 WHERE user_id = '" . $this->id . "'";
 
             $this->PostPutDeleteQuery($put);
@@ -121,7 +121,7 @@ class UserModel extends QueryGetter
         if (empty($this->id) || $this->id == "") {
             $post = "INSERT INTO accounts SET
             username = '" . $this->username . "', 
-            password = '" . $this->password . "',
+            password = '" . hash("sha256", $this->password) . "',
             email = '" . $this->email . "',
             image = 'NULL',
             status = '" . $this->status . "',
@@ -132,7 +132,7 @@ class UserModel extends QueryGetter
         } else {
             $put = "UPDATE accounts SET
             username = '" . $this->username . "', 
-            password = '" . $this->password . "',
+            password = '" . hash("sha256", $this->password) . "',
             email = '" . $this->email . "',
             image = 'NULL',
             status = '" . $this->status . "',
