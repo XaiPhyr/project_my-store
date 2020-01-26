@@ -108,6 +108,13 @@ $total = 0;
                                     <input type="hidden" name="total" value="<?php echo $total ?>">
                                     <button class="btn btn-sm btn-primary" name="checkout" value="submit" type="submit">Checkout</button>
                                 </form>
+
+                                <div class="float-right">
+                                    <input type="hidden" id="total" value="<?php echo $total ?>">
+                                    <span>Cash: <input class="form-control" type="number" name="cash" id="cash" oninput="compute()"></span>
+                                    <br>
+                                    <span>Change: </span> <span class="h3 font-weight-bold float-right" id="change">$ </span>
+                                </div>
                             <?php } ?>
                         </div>
                     </div>
@@ -124,3 +131,7 @@ $total = 0;
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    compute();
+</script>

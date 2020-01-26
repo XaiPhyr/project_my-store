@@ -10,13 +10,13 @@ function closeNav() {
 }
 
 function compute() {
-    var init_price = document.getElementById("price").textContent;
-    var init_qty = document.getElementById("qty").value;
+    var init_total = document.getElementById("total").textContent;
+    var init_cash = document.getElementById("cash").value;
 
-    var total = init_qty * init_price;
+    var total = init_cash - init_total;
     var decimals = total.toFixed(2);
 
-    document.getElementById("total_price").innerHTML = addCommas(decimals);
+    document.getElementById("change").innerHTML = "$ " + addCommas(decimals);
 }
 
 function addCommas(value) {
