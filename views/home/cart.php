@@ -99,11 +99,26 @@ $total = 0;
                                 </tbody>
                             </table>
                             <hr>
-                            <div class="float-right">
-                                <span class="h4">Total: <strong>$ <?php echo number_format($total, 2, '.', ','); ?> </strong></span>
-                            </div>
+                            <?php if ($total > 0) { ?>
+                                <div class="float-right">
+                                    <span class="h4">Total: <strong>$ <?php echo number_format($total, 2, '.', ','); ?> </strong></span>
+                                </div>
+                                <form action="action.php" method="post">
+                                    <input type="hidden" name="customer_id" value="<?php echo $id ?>">
+                                    <input type="hidden" name="total" value="<?php echo $total ?>">
+                                    <button class="btn btn-sm btn-primary" name="checkout" value="submit" type="submit">Checkout</button>
+                                </form>
+                            <?php } ?>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-12">
+                    <a href="?page=order">
+                        <button class="btn btn-secondary float-right">Cancel</button>
+                    </a>
                 </div>
             </div>
         </div>

@@ -41,6 +41,35 @@ class OrderModel extends QueryGetter
     }
 
     /* POST, PUT, DELETE */
+    /**
+     * checkout
+     * 
+     * @param string $id Id of customer
+     * @param int $total the total value of customer's orders
+     */
+    function checkout($id, $total)
+    {
+        $post = "INSERT INTO checkout SET
+        customer_id = '" . $id . "', total = '" . $total . "', checkout_date = now()";
+
+        $this->PostPutDeleteQuery($post);
+    }
+
+    /**
+     * checkout_item
+     * 
+     * function to remove all orders after checkout
+     * @param string $id
+     * 
+     */
+    function checkout_item($id)
+    {
+        $put = "UPDATE orders AS o, sales AS s SET
+        o.flag = 0, s.flag = 0 WHERE o.customer_id = '" . $id . "' AND o.Id = s.order_id";
+
+        $this->PostPutDeleteQuery($put);
+    }
+
     function save_order()
     {
         $post = "INSERT INTO orders SET

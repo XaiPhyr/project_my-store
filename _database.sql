@@ -185,3 +185,10 @@ ALTER TABLE store.sales ADD COLUMN `product_name` varchar(45) AFTER `product_id`
 ALTER TABLE store.sales ADD COLUMN `date_purchased` datetime;
 ALTER TABLE store.orders ADD COLUMN `flag` int(1) DEFAULT 0;
 ALTER TABLE store.sales ADD COLUMN `flag` int(1) DEFAULT 0;
+
+CREATE TABLE IF NOT EXISTS store.checkout (
+    `Id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `customer_id` varchar(15) DEFAULT NULL,
+    `total` float DEFAULT NULL,
+    `checkout_date` datetime DEFAULT NULL
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;

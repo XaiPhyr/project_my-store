@@ -52,7 +52,7 @@ class QueryGetter extends database
      * PostPutDeleteQuery
      *
      * Use to POST, PUT, DELETE for query
-     * @param any $query input sql query
+     * @param any $query input sql query post, put, delete
      *
      */
     public function PostPutDeleteQuery($query)

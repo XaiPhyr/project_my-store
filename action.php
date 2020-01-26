@@ -164,6 +164,18 @@ if ($_POST['add_order']) {
     exit();
 }
 
+if ($_POST['checkout']) {
+    include("models/order.php");
+
+    $id = $_POST['customer_id'];
+    $total = $_POST['total'];
+
+    $OrderModel->checkout($id, $total);
+    $OrderModel->checkout_item($id);
+    header("location: index.php?page=order");
+    exit();
+}
+
 if ($_POST['remove_order']) {
     include("models/order.php");
     $order_id = $_POST['order_id'];
